@@ -53,7 +53,7 @@ services:
       - ZEP_EXTRACTORS_MESSAGES_SUMMARIZER_EMBEDDINGS_SERVICE=openai
       - ZEP_EXTRACTORS_MESSAGES_SUMMARIZER_EMBEDDINGS_DIMENSIONS=1536
     env_file:
-      - stack.env # Store your OpenAI API key here as ZEP_OPENAI_API_KEY
+      - .env # Store your OpenAI API key here as ZEP_OPENAI_API_KEY
     build:
       context: .
       dockerfile: Dockerfile
