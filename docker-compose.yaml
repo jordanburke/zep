@@ -44,7 +44,7 @@ services:
         nlp:
           condition: service_healthy
     ports:
-        - "10000:8000"
+        - "10000:10000"
     volumes:
       - ./config.yaml:/app/config.yaml
     environment:
@@ -56,13 +56,14 @@ services:
       - ZEP_EXTRACTORS_MESSAGES_EMBEDDINGS_DIMENSIONS=1536
       - ZEP_EXTRACTORS_MESSAGES_SUMMARIZER_EMBEDDINGS_SERVICE=openai
       - ZEP_EXTRACTORS_MESSAGES_SUMMARIZER_EMBEDDINGS_DIMENSIONS=1536
+      - ZEP_SERVER_PORT=10000
     env_file:
       - stack.env # Store your OpenAI API key here as ZEP_OPENAI_API_KEY
     build:
       context: .
       dockerfile: Dockerfile
     healthcheck:
-      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8000' || exit 1
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/10000' || exit 1
       interval: 5s
       timeout: 10s
       retries: 3
